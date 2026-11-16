@@ -566,61 +566,78 @@ display: none;
 <button class="widget-btn" id="openWidgetBtn">Оставить задачу</button>
 
 <div class="widget-box" id="widgetBox">
-<div class="widget-header">
-<h4>Прямая связь с Андреем</h4>
-<button class="widget-close" id="closeWidgetBtn">&times;</button>
+    <div class="widget-header">
+        <h4>Прямая связь с Андреем</h4>
+        <button class="widget-close" id="closeWidgetBtn">&times;</button>
+    </div>
+    <p class="widget-desc">Без ботов и автоответчиков. Опишите задачу в двух словах — я изучу вводные и лично свяжусь с вами.</p>
+    
+    <form id="leadForm">
+        <input type="text" id="leadName" class="widget-input" placeholder="Как к вам обращаться" required>
+        <input type="text" id="leadContact" class="widget-input" placeholder="Телефон, почта или Telegram" required>
+        <textarea id="leadTask" class="widget-textarea" placeholder="Суть задачи или проекта" required></textarea>
+        <button type="submit" class="widget-submit" id="submitBtn">Отправить напрямую</button>
+    </form>
+    
+    <div class="widget-status" id="widgetStatus"></div>
 </div>
-<p class="widget-desc">Без ботов и автоответчиков. Опишите задачу в двух словах — я изучу вводные и лично свяжусь с вами.</p>
 
-<form id="leadForm">
-<input type="text" id="leadName" class="widget-input" placeholder="Как к вам обращаться" required>
-<input type="text" id="leadContact" class="widget-input" placeholder="Телефон, почта или Telegram" required>
-<textarea id="leadTask" class="widget-textarea" placeholder="Суть задачи или проекта" required></textarea>
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbww8o55LH2T0WY3cHnboVzt9HKT3GWVMmp0l5OvOGj9nO0b9_TLZv85cC3o9Boc53eH/exec";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbww8o55LH2T0WY3cHnboVzt9HKT3GWVMmp0l5OvOGj9nO0b9_TLZv85cC3o9Boc53eH/exec";
-const openBtn = document.getElementById("openWidgetBtn");
-const closeBtn = document.getElementById("closeWidgetBtn");
-const widgetBox = document.getElementById("widgetBox");
-const leadForm = document.getElementById("leadForm");
-const submitBtn = document.getElementById("submitBtn");
-const statusDiv = document.getElementById("widgetStatus");
-openBtn.addEventListener("click", () => widgetBox.classList.toggle("active"));
-closeBtn.addEventListener("click", () => widgetBox.classList.remove("active"));
-leadForm.addEventListener("submit", function(e) {
-e.preventDefault();
-submitBtn.disabled = true;
-submitBtn.textContent = "Отправка...";
-statusDiv.style.display = "none";
-const payload = {
-name: document.getElementById("leadName").value,
-contact: document.getElementById("leadContact").value,
-task: document.getElementById("leadTask").value
-};
-fetch(SCRIPT_URL, {
-method: "POST",
-mode: "no-cors",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify(payload)
-})
-.then(() => {
-statusDiv.style.display = "block";
-statusDiv.style.color = "#4ade80";
-statusDiv.textContent = "Принято! Заявка у меня, скоро свяжусь.";
-leadForm.reset();
-submitBtn.disabled = false;
-submitBtn.textContent = "Отправить напрямую";
-setTimeout(() => {
-widgetBox.classList.remove("active");
-statusDiv.style.display = "none";
-}, 3000);
-})
-.catch(() => {
-statusDiv.style.display = "block";
-statusDiv.style.color = "#f87171";
-statusDiv.textContent = "Ошибка сети. Напишите на почту matematikaokai@gmail.com";
-submitBtn.disabled = false;
-submitBtn.textContent = "Отправить напрямую";
-});
-});
+    const openBtn = document.getElementById("openWidgetBtn");
+    const closeBtn = document.getElementById("closeWidgetBtn");
+    const widgetBox = document.getElementById("widgetBox");
+    const leadForm = document.getElementById("leadForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusDiv = document.getElementById("widgetStatus");
+
+    openBtn.addEventListener("click", () => widgetBox.classList.toggle("active"));
+    closeBtn.addEventListener("click", () => widgetBox.classList.remove("active"));
+
+    leadForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправка...";
+        statusDiv.style.display = "none";
+
+        const payload = {
+            name: document.getElementById("leadName").value,
+            contact: document.getElementById("leadContact").value,
+            task: document.getElementById("leadTask").value
+        };
+
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            statusDiv.style.display = "block";
+            statusDiv.style.color = "#4ade80";
+            statusDiv.textContent = "Принято! Заявка у меня, скоро свяжусь.";
+            leadForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Отправить напрямую";
+            
+            setTimeout(() => {
+                widgetBox.classList.remove("active");
+                statusDiv.style.display = "none";
+            }, 3000);
+        })
+        .catch(() => {
+            statusDiv.style.display = "block";
+            statusDiv.style.color = "#f87171";
+            statusDiv.textContent = "Ошибка сети. Напишите на почту matematikaokai@gmail.com";
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Отправить напрямую";
+        });
+    });
+</script>
+
+</body>
+</html>
