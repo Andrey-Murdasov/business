@@ -288,6 +288,33 @@ h1 { font-size: 1.8rem; }
 header { padding: 30px 0; }
 section { padding: 32px 0; }
 }
+/* Аккуратные плашки-кнопки в одном ряду для контактов*/
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+.footer-btn:hover {
+    border-color: rgba(148, 163, 184, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+}
+
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -326,8 +353,13 @@ section { padding: 32px 0; }
     </svg>
     Написать в MAX
 </a>
-<a href="mailto:matematikaokai@gmail.com" class="btn btn-outline">matematikaokai@gmail.com</a>
-    
+<a href="mailto:matematikaokai@gmail.com" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        Написать на почту
+    </a>
 </div>
 
 <p class="work-format">
@@ -488,14 +520,27 @@ section { padding: 32px 0; }
 ПОДВАЛ (FOOTER)
 ========================================= -->
 <footer>
-<div class="footer-links">
-    <a href="https://t.me/murdasov_bot" target="_blank">Telegram: @murdasov_bot</a>
-    <a href="https://max.ru/se15066291_bot" target="_blank" rel="noopener noreferrer">MAX: @se15066291_bot</a>
-    <a href="mailto:matematikaokai@gmail.com">matematikaokai@gmail.com</a>
-    <a href="https://github.com/Andrey-Murdasov" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/andrey-murdasov-8886a53a6" target="_blank">LinkedIn</a>
-</div>
-<p> 2026 Андрей Мурдасов. Системный анализ, автоматизация и работа с данными.</p>
+    <div class="footer-links">
+        <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram
+        </a>
+        <a href="https://max.ru" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            <svg viewBox="0 0 48 48" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M15.63 40.465c8.083 7.193 27.86-1.166 27.783-15.85C43.36 14.546 35.107 4.59 24.873 4.5c-9.538-.083-19.648 5.962-20.23 17.767c-.172 3.515 0 8.859 1.231 11.73c2.335 6.7.113 8.477 2.804 9.328q3.617.9 6.953-2.861zM24 14.5a9.2 9.2 0 1 0 0 18.4a9.2 9.2 0 1 0 0-18.4z"/></svg>
+            MAX
+        </a>
+        <a href="mailto:matematikaokai@gmail.com" class="footer-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Почта
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            GitHub
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-btn">
+            LinkedIn
+        </a>
+    </div>
+    <p>© 2026 Андрей Мурдасов. Системный анализ, автоматизация и работа с данными.</p>
 </footer>
 
 </div>
